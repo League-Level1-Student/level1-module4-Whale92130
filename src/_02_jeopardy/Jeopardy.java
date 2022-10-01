@@ -33,7 +33,7 @@ import game_tools.Sound;
 public class Jeopardy implements ActionListener {
 	private JButton firstButton;
 	private JButton secondButton;
-	private JButton thirdButton, fourthButton;
+	private JButton thirdButton, fourthButton, fifthButton;
 	private JPanel quizPanel;
 	private int score = 0;
 	private JLabel scoreBox = new JLabel("0");
@@ -59,7 +59,7 @@ public class Jeopardy implements ActionListener {
 		// 5. Add the quizPanel to the frame
 		frame.add(quizPanel);
 		// 6. Use the createButton method to set the value of firstButton
-		createButton("200");
+		firstButton = createButton("200");
 		// 7. Add the firstButton to the quizPanel
 		quizPanel.add(firstButton);
 		// 8. Write the code to complete the createButton() method below. Check that your
@@ -67,15 +67,23 @@ public class Jeopardy implements ActionListener {
 		
 		// 9. Use the secondButton variable to hold a button using the createButton
 		// method
-			createButton("Q2");
-		
+			secondButton = createButton("400");
+			thirdButton = createButton("600");
+			fourthButton = createButton("800");
+			fifthButton = createButton("1000");
 		// 10. Add the secondButton to the quizPanel
 			quizPanel.add(secondButton);
+			quizPanel.add(thirdButton);
+			quizPanel.add(fourthButton);
+			quizPanel.add(fifthButton);
 		// 11. Add action listeners to the buttons (2 lines of code)
 			firstButton.addActionListener(this);
 			secondButton.addActionListener(this);
+			thirdButton.addActionListener(this);
+			fourthButton.addActionListener(this);
+			fifthButton.addActionListener(this);
 		// 12. Write the code to complete the actionPerformed() method below
-
+			
 		// 13. Add buttons so that you have $200, $400, $600, $800 and $1000 questions
 		
 		 /*
@@ -101,7 +109,7 @@ public class Jeopardy implements ActionListener {
 		buttonCount++;
 		// Return your new button instead of the temporary button
 
-		return new JButton("button");
+		return new JButton(dollarAmount);
 	}
 
 	@Override
@@ -114,6 +122,23 @@ public class Jeopardy implements ActionListener {
 		// If the buttonPressed was the firstButton
 		if(e.getSource() == firstButton) {
 			askQuestion("How long is a pencil", "21", 200);
+			firstButton.setText(null);
+		}
+		else if(e.getSource() == secondButton) {
+			askQuestion("How do u code a button", "just code it", 400);
+			secondButton.setText(null);
+		}
+		else if(e.getSource() == thirdButton) {
+			askQuestion("How tall is the Orlando Post Office", "21", 600);
+			thirdButton.setText(null);
+		}
+		else if(e.getSource() == fourthButton) {
+			askQuestion("What is the name of the person credited with creating the world’s first car?", "Not Henry Ford", 800);
+			fourthButton.setText(null);
+		}
+		else if(e.getSource() == fifthButton) {
+			askQuestion("What is the largest country in EU", "Denmark", 1000);
+			fifthButton.setText(null);
 		}
 			// Call the askQuestion() method
 			
@@ -138,16 +163,17 @@ public class Jeopardy implements ActionListener {
 			stopJeopardyTheme();
 		// If the answer is correct
 				if(userAnswer.equalsIgnoreCase(correctAnswer)) {
-					score =+ prizeMoney;
+					score = prizeMoney + score;
 					JOptionPane.showMessageDialog(null, "You got it right");
 				}
 				else {
-					score =- prizeMoney;
+					score = score - prizeMoney;
 					JOptionPane.showMessageDialog(null, "Wrong");
+					JOptionPane.showMessageDialog(null, correctAnswer);
 				}
 				updateScore();
 			// Increase the score by the prizeMoney
-
+					
 			// Pop up a message to tell the user they were correct
 
 		// Otherwise
