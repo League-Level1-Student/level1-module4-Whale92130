@@ -21,7 +21,7 @@ public class BookOfIllusions extends MouseAdapter {
 
 	// 1. Make a JFrame variable and initialize it using "new JFrame()"
 		JFrame frame = new JFrame();
-		JLabel label = new JLabel();
+		JLabel label;
 		String image;
 		String image2;
 		String imageQ;
@@ -36,7 +36,7 @@ public class BookOfIllusions extends MouseAdapter {
 		// 6. create a variable of type "JLabel" but don’t initialize it yet
 		
 		// 7. use the "loadImage..." methods below to initialize your JLabel
-		label.add(loadImageFromComputer(image));
+		label = (loadImageFromComputer(image));
 		// 8. add your JLabel to the frame
 		frame.add(label);
 		// 9. call the pack() method on the frame
@@ -49,7 +49,7 @@ public class BookOfIllusions extends MouseAdapter {
 		// 11. Print "clicked!" to the console when the mouse is pressed
 		System.out.println("clicked");
 		// 12. remove everything from the frame that was added earlier
-		frame.removeAll();
+		frame.remove(label);
 		// 13. load a new image like before (this is more than one line of code)
 		 Random r = new Random();
 		 int ra = r.nextInt(2);
@@ -60,7 +60,7 @@ public class BookOfIllusions extends MouseAdapter {
 			imageQ = image2;
 		}
 		
-		label.add(loadImageFromComputer(imageQ));
+		label = (loadImageFromComputer(imageQ));
 		frame.add(label);
 		// 14. pack the frame
 		frame.pack();
