@@ -1,6 +1,9 @@
 package _07_tv_show_episode_info;
 
 
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -8,13 +11,38 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-public class TVShowEpisodeInfoDisplayer {
-	
+public class TVShowEpisodeInfoDisplayer implements ActionListener {
+	JButton button = new JButton("Submit");
+	JFrame frame = new JFrame();
+	JPanel panel = new JPanel();
+	JTextField text = new JTextField(15);
 	public TVShowEpisodeInfoDisplayer() {
 		
+		
+		
+		button.addActionListener(this);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		panel.add(text);
+		panel.add(button);
+		frame.add(panel);
+		frame.pack();
+		frame.resize(300, 70);
+		frame.setVisible(true);
+		
 	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == button) {
+			JOptionPane.showMessageDialog(null, getShowEpisodeData(text.getText()));
+		}
+	} 
 
 	
 	
@@ -23,7 +51,7 @@ public class TVShowEpisodeInfoDisplayer {
 /////////////////////////DO NOT MODIFY ANY CODE BELOW THIS LINE//////////////////////////////////////////
 	
 	/**
-	 * Searches the tvmaze.com api for season and episode information about
+	 * Searches the tvmaze.com api for season and episode information about (ha modifyed)
 	 * a chosen show and returns the information in a String
 	 * 
 	 * @param showTitle	the name of the show to get information about
@@ -74,4 +102,10 @@ public class TVShowEpisodeInfoDisplayer {
 		
 		return res;
 	}
+
+
+
+
+
+	
 }
