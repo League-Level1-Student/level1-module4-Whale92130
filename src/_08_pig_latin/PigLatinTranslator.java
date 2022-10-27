@@ -1,4 +1,4 @@
-package _08_pig_latin;
+ package _08_pig_latin;
 
 public class PigLatinTranslator {
     /**
